@@ -1,5 +1,3 @@
-
-// ---------- Game constants ----------
 const GAME_NAME = "Tic-Tac-Toe";
 const PLAYER = "X";
 const AI = "O";
@@ -23,21 +21,18 @@ const PLAYER_NAMES = {
 
 const AI_DELAY = 350;
 
-// ---------- DOM elements ----------
 const cells = [...document.querySelectorAll(".cell")];
 const statusText = document.getElementById("status");
 const difficultySelect = document.getElementById("difficulty");
 const startButton = document.getElementById("start-btn");
 const restartButton = document.getElementById("restart-btn");
 
-// ---------- Game state ----------
 let board = Array(9).fill(EMPTY);
 let difficulty = "normal";
 let gameOver = false;
 let playerTurn = true;
 let aiTimer = null;
 
-// ---------- Board rendering ----------
 function renderBoard() {
     cells.forEach((cell, index) => {
         const value = board[index];
@@ -62,7 +57,6 @@ function setStatus(message) {
     statusText.textContent = message;
 }
 
-// ---------- Game logic ----------
 function getWinner() {
     for (const combination of WINNING_COMBINATIONS) {
         const [a, b, c] = combination;
@@ -97,7 +91,6 @@ function getEmptySpaces() {
     }, []);
 }
 
-// Find a move that wins for the specified symbol.
 function findWinningMove(symbol) {
     for (const position of getEmptySpaces()) {
         board[position] = symbol;
@@ -124,27 +117,23 @@ function getRandomMove() {
     return spaces[Math.floor(Math.random() * spaces.length)];
 }
 
-// ---------- AI ----------
 function getAIMove() {
     if (difficulty === "easy") {
         return getRandomMove();
     }
 
-    // Win immediately if possible.
     let position = findWinningMove(AI);
 
     if (position !== -1) {
         return position;
     }
 
-    // Block the player's winning move.
     position = findWinningMove(PLAYER);
 
     if (position !== -1) {
         return position;
     }
 
-    // Hard mode prioritizes the center.
     if (difficulty === "hard" && board[4] === EMPTY) {
         return 4;
     }
@@ -181,7 +170,6 @@ function makeAIMove() {
     renderBoard();
 }
 
-// ---------- End-game handling ----------
 function highlightWinningCells(combination) {
     if (!combination) {
         return;
@@ -224,7 +212,6 @@ function finishGame() {
     return false;
 }
 
-// ---------- Player interaction ----------
 function handlePlayerMove(event) {
     const position = Number(event.currentTarget.dataset.index);
 
@@ -253,9 +240,7 @@ function handlePlayerMove(event) {
     }, AI_DELAY);
 }
 
-// ---------- Start and restart ----------
 function startNewGame() {
-    // Cancel any pending AI move.
     if (aiTimer !== null) {
         window.clearTimeout(aiTimer);
         aiTimer = null;
@@ -277,7 +262,6 @@ function startNewGame() {
     renderBoard();
 }
 
-// ---------- Event listeners ----------
 cells.forEach(cell => {
     cell.addEventListener("click", handlePlayerMove);
 });
@@ -285,7 +269,6 @@ cells.forEach(cell => {
 startButton.addEventListener("click", startNewGame);
 restartButton.addEventListener("click", startNewGame);
 
-// ---------- Initialize ----------
 document.title = `${GAME_NAME}: Player vs AI`;
 
 startNewGame();
