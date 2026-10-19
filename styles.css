@@ -1,5 +1,3 @@
-
-/* ---------- Global styles ---------- */
 :root {
     --background: #f1f5f9;
     --surface: #ffffff;
@@ -35,7 +33,6 @@ select {
     font: inherit;
 }
 
-/* ---------- Main container ---------- */
 .game-container {
     width: 100%;
     max-width: 460px;
@@ -61,7 +58,6 @@ select {
     line-height: 1.5;
 }
 
-/* ---------- Controls ---------- */
 .game-controls {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -116,7 +112,6 @@ select {
     background: #cbd5e1;
 }
 
-/* ---------- Game status ---------- */
 #status {
     min-height: 48px;
     display: flex;
@@ -132,7 +127,6 @@ select {
     font-weight: 600;
 }
 
-/* ---------- Game board ---------- */
 .board {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -185,7 +179,6 @@ select:focus-visible {
     outline-offset: 3px;
 }
 
-/* ---------- Footer ---------- */
 .game-footer {
     margin-top: 22px;
     text-align: center;
@@ -201,7 +194,6 @@ select:focus-visible {
     color: var(--ai);
 }
 
-/* ---------- Mobile layout ---------- */
 @media (max-width: 420px) {
     body {
         padding: 14px;
