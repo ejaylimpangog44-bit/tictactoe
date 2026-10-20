@@ -52,12 +52,6 @@ select {
     font-size: 2rem;
 }
 
-.game-header p {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.5;
-}
-
 .game-controls {
     display: grid;
     grid-template-columns: 1fr 1fr;
